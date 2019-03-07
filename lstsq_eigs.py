@@ -1,21 +1,19 @@
 # lstsq_eigs.py
-"""Volume 1: Least Squares and Computing Eigenvalues.
-<Name>
-<Class>
-<Date>
-"""
+"""Least Squares and Computing Eigenvalues
+Jake Callahan
 
-# (Optional) Import functions from your QR Decomposition lab.
-# import sys
-# sys.path.insert(1, "../QR_Decomposition")
-# from qr_decomposition import qr_gram_schmidt, qr_householder, hessenberg
+Because of its numerical stability and convenient structure, the QR decomposition
+is the basis of many important and practical algorithms. In this program, I model
+linear least squares problems, tools in Python for computing least squares solutions,
+and two fundamental algorithms for computing eigenvalue. The QR decomposition makes
+solving several of these problems quick and numerically stable
+"""
 
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy import linalg as la
 import cmath
 
-# Problem 1
 def least_squares(A, b):
     """Calculate the least squares solutions to Ax = b by using the QR
     decomposition.
@@ -37,7 +35,6 @@ def least_squares(A, b):
 
     return solution
 
-# Problem 2
 def line_fit():
     """Find the least squares line that relates the year to the housing price
     index for the data in housing.npy. Plot both the data points and the least
@@ -59,7 +56,6 @@ def line_fit():
     plt.plot(x, line_fit[0]*x + line_fit[1], 'g-')
     plt.show()
 
-# Problem 3
 def polynomial_fit():
     """Find the least squares polynomials of degree 3, 6, 9, and 12 that relate
     the year to the housing price index for the data in housing.npy. Plot both
@@ -108,9 +104,7 @@ def polynomial_fit():
     ax3.plot(x, twlv_fit[0]*(x**12) + twlv_fit[1]*(x**11) + twlv_fit[2]*(x**10) + twlv_fit[3]*(x**9) + twlv_fit[4]*(x**8) + twlv_fit[5]*(x**7) + twlv_fit[6]*(x**6) + twlv_fit[7]*(x**5) + twlv_fit[8]*(x**4) + twlv_fit[9]*(x**3) + twlv_fit[10]*(x**2) + twlv_fit[11]*(x) + twlv_fit[12], 'g-')
     ax3.plot(housing.T[0], housing.T[1], 'g*')
 
-
 def plot_ellipse(a, b, c, d, e):
-    #I didn't write this and therefore refuse to comment it
     """Plot an ellipse of the form ax^2 + bx + cxy + dy + ey^2 = 1."""
     theta = np.linspace(0, 2*np.pi, 200)
     cos_t, sin_t = np.cos(theta), np.sin(theta)
@@ -121,7 +115,6 @@ def plot_ellipse(a, b, c, d, e):
     plt.plot(r*cos_t, r*sin_t)
     plt.gca().set_aspect("equal", "datalim")
 
-# Problem 4
 def ellipse_fit():
     """Calculate the parameters for the ellipse that best fits the data in
     ellipse.npy. Plot the original data points and the ellipse together, using
@@ -149,7 +142,6 @@ def ellipse_fit():
     plt.plot(x, y, 'g*')
     plt.show()
 
-# Problem 5
 def power_method(A, N=20, tol=1e-12):
     """Compute the dominant eigenvalue of A and a corresponding eigenvector
     via the power method.
@@ -181,7 +173,6 @@ def power_method(A, N=20, tol=1e-12):
 
     return x_next.T @ A @ x_next, x_next
 
-# Problem 6
 def qr_algorithm(A, N=50, tol=1e-12):
     """Compute the eigenvalues of A via the QR algorithm.
 
